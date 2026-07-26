@@ -46,3 +46,37 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def grow_snake(self):
+        new_segment = Turtle(shape="square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(self.segments[-1].position())
+        self.segments.append(new_segment)
+
+    def is_collision_with_tail(self):
+        for segment in self.segments[1:]:
+            if segment == self.head:
+                continue
+            if self.head.distance(segment) < 10:
+                return True
+        return False
+
+    def is_collision_with_wall(self):
+        return (
+            self.head.xcor() > 280
+            or self.head.xcor() < -280
+            or self.head.ycor() > 280
+            or self.head.ycor() < -280
+        )
+
+
+# slicing the list
+piano_keys = ["A", "B", "C", "D", "E", "F", "G"]
+# print(piano_keys[1:])
+# print(piano_keys[1:-1])
+# print(piano_keys[:-1])
+# print(piano_keys[1:])
+# print(piano_keys[1:])
+print(piano_keys[::-1])
+print(piano_keys[2:5])
